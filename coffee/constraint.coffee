@@ -246,9 +246,11 @@ getBoundingRect = (tether, to) ->
           addClasses.push "#{ oobClass }-#{ side }"
 
       if 'left' in pinned or 'right' in pinned
-        eAttachment.left = tAttachment.left = false
+        eAttachment.left = false unless @options.keepElementAttached
+        tAttachment.left = false
       if 'top' in pinned or 'bottom' in pinned
-        eAttachment.top = tAttachment.top = false
+        eAttachment.top = false unless @options.keepElementAttached
+        tAttachment.top = false
 
       if tAttachment.top isnt targetAttachment.top or tAttachment.left isnt targetAttachment.left or eAttachment.top isnt @attachment.top or eAttachment.left isnt @attachment.left
         @updateAttachClasses eAttachment, tAttachment
